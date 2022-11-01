@@ -3,7 +3,7 @@
 #include <windows.h>
 using namespace std;
 bool gameOver;
-const int width = 20;
+const int width = 40;
 const int height = 20;
 int x, y, fruitX, fruitY, score;
 int tailX[100], tailY[100];
@@ -22,9 +22,9 @@ void Setup()
 }
 void Draw()
 {
-    system("cls"); //system("clear");
+    system("cls");
     for (int i = 0; i < width+2; i++)
-        cout << "#";
+        cout << "$";
     cout << endl;
 
     for (int i = 0; i < height; i++)
@@ -32,11 +32,11 @@ void Draw()
         for (int j = 0; j < width; j++)
         {
             if (j == 0)
-                cout << "#";
+                cout << "$";
             if (i == y && j == x)
-                cout << "O";
+                cout << "X";
             else if (i == fruitY && j == fruitX)
-                cout << "F";
+                cout << "0";
             else
             {
                 bool print = false;
@@ -44,7 +44,7 @@ void Draw()
                 {
                     if (tailX[k] == j && tailY[k] == i)
                     {
-                        cout << "o";
+                        cout << "x";
                         print = true;
                     }
                 }
@@ -54,13 +54,13 @@ void Draw()
 
 
             if (j == width - 1)
-                cout << "#";
+                cout << "$";
         }
         cout << endl;
     }
 
     for (int i = 0; i < width+2; i++)
-        cout << "#";
+        cout << "$";
     cout << endl;
     cout << "Score:" << score << endl;
 }
@@ -121,8 +121,7 @@ void Logic()
         default:
             break;
     }
-    //if (x > width || x < 0 || y > height || y < 0)
-    //	gameOver = true;
+
     if (x >= width) x = 0; else if (x < 0) x = width - 1;
     if (y >= height) y = 0; else if (y < 0) y = height - 1;
 
@@ -146,7 +145,7 @@ int main()
         Draw();
         Input();
         Logic();
-        Sleep(10); //sleep(10);
+        Sleep(10);
     }
     return 0;
 }
